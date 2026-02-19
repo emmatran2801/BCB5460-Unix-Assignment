@@ -1,8 +1,8 @@
-#UNIX Assignment
+# UNIX Assignment
 
-##Data Inspection
+## Data Inspection
 
-###Attributes of `fang_et_al_genotypes`
+### Attributes of `fang_et_al_genotypes`
 
 ```
 head -n 1 fang_et_al_genotypes.txt
@@ -14,7 +14,7 @@ By inspecting this file I learned that:
 
 - The columns are Sample_ID, JG_OTU, Group, and numerous SNP_IDs, with each SNP_ID representing a unique column.
 
-###Attributes of `snp_position.txt`
+### Attributes of `snp_position.txt`
 
 ```
 head -n 1 snp_position.txt
@@ -28,7 +28,7 @@ By inspecting this file I learned that:
 - The Position column contains 'unknown' for missing values.
 - The Chromosome column contains 'multiple' for entries with multiple values.
 
-##Data Processing
+## Data Processing
 
 ```
 (head -n 1 snp_position.txt && tail -n +2 snp_position.txt | sort -k1,1V) > snp_position_sorted.txt
@@ -45,7 +45,7 @@ head snp_position_sorted.txt
 3. Replace snp_position_sorted.txt with the temporary file containing only the selected columns.
 4. Remove the first line (header) from snp_position_sorted.txt.
 
-###Maize Data
+### Maize Data
 
 ```
 awk 'NR==1 || $3 ~ /ZMMIL|ZMMLR|ZMMMR/' fang_et_al_genotypes.txt > maize_genotypes.txt
@@ -149,7 +149,7 @@ done
     - Sort the filtered rows numerically by Position ($3) in decreasing order (-k3,3nr).
     - Write the header and sorted data into the chromosome-specific output file.
 
-###Teosinte Data
+### Teosinte Data
 
 ```
 awk 'NR==1 || $3 ~ /ZMPBA|ZMPIL|ZMPJA/' fang_et_al_genotypes.txt > teosinte_genotypes.txt
